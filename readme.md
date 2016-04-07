@@ -51,7 +51,7 @@ The screen clears.
 	$ 
 
 Your typed password doesn't appear on the screen.  
-If *xclip*, *xsel*, or *clipit* are not found, the hash prints:
+If *xclip*, or *clipit* are not found, the hash prints:
 
 	$ gmail
 	$ d644d4c2d9e3c49
