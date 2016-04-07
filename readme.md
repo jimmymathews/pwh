@@ -2,7 +2,7 @@
 
 This script is a simple, unusual password manager. You only need one master password, and it is never stored for more than a second.
 
-1. Run the Python script at the terminal.
+1. Run the Python script *password.py* at the terminal.
 2. Enter a string describing the account that the password is for, like *gmail* or *bankofamerica*.
 3. Enter your master password.
 4. The two are hashed, and if desired, character limits are imposed and symbols added or subtracted to meet the account provider's requirements.
@@ -14,10 +14,8 @@ List the password limitations in the file "accounts.csv", in the format:
 
     name, character max, character min, letter min, capital min, symbol min, expiration, manual appendage
     default,         15,              ,           ,            ,           ,           ,
-    gmail,           15,            10,          8,           2,          0,           ,
-    bankofamerica,   15,            10,          8,           2,          0,           ,
-    tfcu,            15,            10,          8,           2,          0,           ,
-    netid,         1000,            10,          8,           2,          0,           ,
+    gmail,           15,            10,           ,            ,           ,           ,
+    bankofamerica,   15,            10,           ,            ,           ,           ,
 
 * *name*  
 The name of the website or provider, e.g. *gmail*.
