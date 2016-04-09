@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo -n "primary:   "
+xclip -o -selection primary
+echo ""
+echo -n "secondary: "
+xclip -o -selection secondary
+echo ""
+echo -n "clipboard: "
+xclip -o -selection clipboard
+echo ""
+
+#shift-insert in bash fetches from primary
+#ctrl-shift-c in bash writes to primary and clipboard
+#ctrl-c in chrome (and possibly other applications) writes to primary and clipboard
+#highlight and click-unselect writes to primary only

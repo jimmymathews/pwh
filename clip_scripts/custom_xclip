@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -n "$1" | xclip -selection primary
+echo -n "$1" | xclip -selection clipboard

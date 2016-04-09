@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -n "primary:   "
+clipit -p
+echo ""
+echo -n "clipboard: "
+clipit -c
+echo ""

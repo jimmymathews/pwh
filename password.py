@@ -1,31 +1,31 @@
 #!/usr/bin/python
 
+import os
 import subprocess
 import thread
 import time
 class clipper:
+
 	def __init__(self):
 		self.clipboard_function = "none"
+		DEVNULL = open(os.devnull, "w");
 		try:
-			subprocess.check_output(["xclip", "-h"])
-			self.clipboard_function = "xclip"
+			subprocess.check_call(["clipit","-h"], stdout=DEVNULL, stderr=DEVNULL)
+			self.clipboard_function = "clipit"
 		except:
 			pass
 		try:
-			subprocess.check_output(["clipit", "-h"])
-			self.clipboard_function = "clipit"
+			subprocess.check_call(["xclip", "-h"], stdout=DEVNULL, stderr=DEVNULL)
+			self.clipboard_function = "xclip"
 		except:
 			pass
 
 	def clip(self,str):
 		if self.clipboard_function == "clipit":
-			subprocess.check_call(["clipit", str])
-			return
-		if self.clipboard_function == "xsel":
-			subprocess.check_call(["echo", str, "| xsel"])
+			subprocess.check_call(["clip_scripts/custom_clipit", str])
 			return
 		if self.clipboard_function == "xclip":
-			subprocess.check_call(["echo", str, "| xclip"])
+			subprocess.call(["clip_scripts/custom_xclip", str])
 			return
 
 	def clear(self):
@@ -35,8 +35,10 @@ class clipper:
 		time.sleep(amount)
 		self.clear()
 
+
 import csv
-class password_settings:
+class account_settings:
+
 	def __init__(self, filename):
 		self.account_names = []
 		self.accounts = []
@@ -74,11 +76,13 @@ class password_settings:
 		except:
 			return 0
 
-	def get(self, n):
+	def get_rules(self, n):
 		return self.accounts[self.account_names.index(n)]
+
 
 import hashlib
 class hasher:
+
 	def __init__(self, input):
 		self.buffer = input
 
@@ -104,12 +108,10 @@ class hasher:
 
 
 import getpass
-import os
 
 os.system('clear')
-
 c = clipper()
-settings = password_settings("accounts.csv")
+settings = account_settings(".accounts.csv")
 
 while True:
 	name = raw_input()
@@ -120,7 +122,7 @@ while True:
 	print '\033[F\033[F'
 
 	if name in settings.account_names:
-		h.set_rules(settings.get(name))
+		h.set_rules(settings.get_rules(name))
 	else:
 		h.set_rules(settings.default_rules)
 
