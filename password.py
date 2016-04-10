@@ -265,11 +265,11 @@ while True:
 
 	if c.clipboard_function != "none":
 		c.clip(h.output())
-		thread.start_new_thread(c.delayed_clear, (5,) )
+		thread.start_new_thread(c.delayed_clear, (5,) )	#erased after 5 seconds (change this for different delay amounts)
 	else:
 		print h.output()
 
 if c.clipboard_function != "none":
 	c.clear()
 
-d.dump()
+#d.dump()	#uncomment this to see debugging output

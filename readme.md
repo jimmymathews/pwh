@@ -2,7 +2,7 @@
 
 This script is a simple, unusual password manager. You only need to remember one master password, and it is never stored for more than a second.
 
-1. Run the Python script *password.py* in a terminal emulator (If you'd like, you can change the name).
+1. Run the Python script *password.py* in a terminal emulator. (If you'd like, you can change the name).
 2. Enter a string describing the account that the password is for, like *gmail* or *bankofamerica*.
 3. Enter your master password.
 4. The two are hashed, and if desired, character limits are imposed and symbols added or subtracted to meet the account provider's requirements.
