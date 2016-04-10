@@ -1,4 +1,3 @@
 name, character max, letter min, numeral min, capital min, symbol min, expiration, manual appendage
-default,         15,           ,            ,            ,           ,           ,
-gmail,           15,           ,            ,            ,           ,           ,
-bankofamerica,   15,           ,            ,            ,           ,           ,
+default,        100,           ,           5,          10,           ,     yearly,
+gmail,            8,           ,            ,            ,           ,           ,
