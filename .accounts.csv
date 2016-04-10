@@ -1,4 +1,4 @@
-name, character max, character min, letter min, capital min, symbol min, expiration, manual appendage
-default,         15,              ,           ,            ,           ,           ,
-gmail,           15,             6,           ,            ,           ,           ,
-bankofamerica,   15,             6,           ,            ,           ,           ,
+name, character max, letter min, numeral min, capital min, symbol min, expiration, manual appendage
+default,         15,           ,            ,            ,           ,           ,
+gmail,           15,           ,            ,            ,           ,           ,
+bankofamerica,   15,           ,            ,            ,           ,           ,

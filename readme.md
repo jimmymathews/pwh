@@ -2,7 +2,7 @@
 
 This script is a simple, unusual password manager. You only need to remember one master password, and it is never stored for more than a second.
 
-1. Run the Python script *password.py* at the terminal.
+1. Run the Python script *password.py* in a terminal emulator (If you'd like, you can change the name).
 2. Enter a string describing the account that the password is for, like *gmail* or *bankofamerica*.
 3. Enter your master password.
 4. The two are hashed, and if desired, character limits are imposed and symbols added or subtracted to meet the account provider's requirements.
@@ -17,36 +17,34 @@ List the password limitations in the file "accounts.csv", in the format:
     gmail,           15,            10,           ,            ,            ,           ,           ,
     bankofamerica,   15,            10,           ,            ,            ,           ,           ,
 
+
 * *name*  
 The name of the website or provider, e.g. *gmail*.
 
 * *character max* (number or blank)  
 Limits the number of characters in the final output.		
 
-* *character min* (number or blank)  
-Ensures a minimum number of characters in the final output.
-
 * *letter min* (number or blank)  
-Ensures a minimum number of letter characters in the final output.
+Tries to ensure a minimum number of letter characters in the final output.
 
 * *numeral min* (number or blank)  
-Ensures a minimum number of numerals in the final output.
+Tries to ensure a minimum number of numerals in the final output.
 
 * *capital min* (number or blank)  
-Ensures a minimum number of capital letter characters in the final output.
+Tries to ensure a minimum number of capital letter characters in the final output.
 
 * *symbol min* (number or blank)  
-Ensures a minimum number of symbol characters (those arising as shift modifications of a numeral) in the final output.
+Tries to ensure a minimum number of symbol characters (those arising as shift modifications of a numeral) in the final output.
 
-* *expiration* (weekly, monthly, or yearly, or number of days)  
-Appends a string identifying the week/month/year to the hash.
+* *expiration* ("weekly", "monthly", "yearly")  
+Appends a string identifying the week/month/year prior to the hash.
 
 * *manual appendage* (string)  
-Appends the string to the hash. For manual "versions". 
+Appends the string prior to the hash. For manual "versions". 
 
 ###How it looks
 
-	$ python password.py
+	$ ./password.py
 
 The screen clears.
 
@@ -67,4 +65,4 @@ To exit, use *q*, *quit*, or *exit*:
 
 * *xclip* is the recommended clipboard manager for this script.
 
-* If using *clipit*, clipboard synchronization is recommended; otherwise program control of the primary clipboard is limited, so that it is difficult to erase the passwords that are copied to the clipboard.
+* If using *clipit*, clipboard synchronization is recommended. Otherwise program control of the primary clipboard is limited; it can be difficult to erase the passwords that are copied to the clipboard.
