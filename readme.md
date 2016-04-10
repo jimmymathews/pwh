@@ -12,10 +12,9 @@ This script is a simple, unusual password manager. You only need to remember one
 
 List the password limitations in the file "accounts.csv", in the format:
 
-    name, character max, character min, letter min, numeral min, capital min, symbol min, expiration, manual appendage
-    default,         15,              ,           ,            ,            ,           ,           ,
-    gmail,           15,            10,           ,            ,            ,           ,           ,
-    bankofamerica,   15,            10,           ,            ,            ,           ,           ,
+	name, character max, letter min, numeral min, capital min, symbol min, expiration, manual appendage
+	default,        100,           ,           5,          10,           ,     yearly,
+	gmail,            8,           ,            ,            ,           ,           ,
 
 
 * *name*  
