@@ -2,13 +2,14 @@
 
 This script is a simple, unusual password manager. You only need to remember one master password, and it is stored only as a local Python variable while the script is running.
 
-Update the `.accounts.csv` list with your own info, then:
+It requires the Python package `cursesmenu` which you can get with `pip install curses-menu`.
 
-1. Run the Python script `password.py` in a terminal emulator. (If you'd like, you can change the name).
-2. Enter your master password.
-3. Select an account.
-4. The account name is hashed with the master password, and if desired character limits are imposed and symbols added or subtracted to meet the account provider's requirements (as you specify in `.accounts.csv`).
-5. The result is copied to the system clipboard.
+1. Update the `.accounts.csv` list with your own info, then:
+2. Run the Python script `password.py` in a terminal emulator. (If you'd like, you can change the name).
+3. Enter your master password.
+4. Select an account.
+5. The account name is hashed with the master password, and if desired character limits are imposed and symbols added or subtracted to meet the account provider's requirements (as you specify in `.accounts.csv`).
+6. The result is copied to the system clipboard.
 
 ###Setting password rules for an account
 
