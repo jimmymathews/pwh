@@ -1,4 +1,4 @@
-###Password Hash
+###Password Hash (paranoid version, password never stored even as a local variable)
 
 This script is a simple, unusual password manager. You only need to remember one master password, and it is never stored for more than a second.
 
