@@ -100,6 +100,7 @@ class hasher:
 		copy = self.buffer
 		r = self.rules
 		
+		copy = copy + r["manual appendage"]
 
 		if(r["expiration"] in ["daily", "day"]):
 			copy = copy + time.strftime("%d/%m/%Y")
