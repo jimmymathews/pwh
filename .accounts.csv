@@ -1,11 +1,2 @@
 name, character max, letter min, numeral min, capital min, symbol min, expiration, manual appendage
-default,        100,           ,           5,          10,           ,     yearly,
 gmail,           15,           ,            ,            ,           ,           ,
-bankofamerica,   20,          1,           1,            ,           ,           ,
-facebook,       100,           ,            ,            ,           ,           ,
-tfcu,            14,          1,           1,            ,           ,           ,!!
-amazon,         128,           ,            ,            ,           ,           ,
-rackspace,      100,          1,           1,           1,           ,           ,
-netid,           20,          1,           1,            ,           ,           ,
-solar,           20,           ,            ,            ,           ,           ,
-noip,           100,           ,            ,            ,           ,           ,
