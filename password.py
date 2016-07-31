@@ -1,22 +1,5 @@
 #!/usr/bin/python
 
-class debug_logger:
-
-	def __init__(self):
-		self.message = "Start of log.\n"
-
-	def log(self,new_message):
-		if type(new_message) is not list:
-			self.message = self.message + new_message + "\n"
-		else:
-			for m in new_message:
-				self.message = self.message + "  " + m + "\n"
-
-	def dump(self):
-		print self.message
-
-d = debug_logger()
-
 import os
 import subprocess
 import thread
@@ -76,8 +59,8 @@ class account_settings:
 				self.accounts.append(rule_list)
 			for rule_list in self.accounts:
 				self.account_names.append(rule_list["account"])
-			d.log("Account names:")
-			d.log(self.account_names)
+			
+			
 			self.default_rules = self.accounts[0]
 		except:
 			self.default_rules = 	{"account":"default",
@@ -111,26 +94,26 @@ class hasher:
 
 	def set_rules(self, r):
 		self.rules = r
-		d.log("Using rules for " + r["account"] + ".")
+		
 
 	def apply_input_mask(self):
 		copy = self.buffer
 		r = self.rules
-		d.log("Applying input mask.")
+		
 
 		if(r["expiration"] in ["daily", "day"]):
 			copy = copy + time.strftime("%d/%m/%Y")
-			d.log("Daily expiration.")
+			
 		if(r["expiration"] in ["monthly", "month"]):
 			copy = copy + time.strftime("%m/%Y")
 			if time.strftime("%d") == "01":
 				print(r["account"]+" password changed today.")
-			d.log("Monthly expiration.")
+			
 		if(r["expiration"] in ["yearly", "year"]):
 			copy = copy + time.strftime("%Y")
 			if time.strftime("%d%m") == "0101":
 				print(r["account"]+" password changed today.")
-			d.log("Yearly expiration.")
+			
 
 		self.buffer = copy
 
@@ -145,8 +128,7 @@ class hasher:
 
 		l = self.lower_count(copy)
 		u = self.upper_count(copy)
-		if self.letter_count(copy) != (l + u): 
-			d.log("Alphabetical character count failed.")
+		# if self.letter_count(copy) != (l + u): .... then "Alphabetical character count failed."
 		n = self.numeral_count(copy)
 		s = self.symbol_count(copy)	#always zero?
 
@@ -238,6 +220,7 @@ class hasher:
 		return count
 
 
+
 from cursesmenu import *
 from cursesmenu.items import *
 import getpass
@@ -248,7 +231,6 @@ s = account_settings(".accounts.csv")
 
 gp = getpass.getpass("")
 
-
 def calculate_password(r):
 	h = hasher(gp+r["account"])
 	h.set_rules(r)
@@ -258,30 +240,9 @@ def calculate_password(r):
 	c.clip(h.output())
 
 menu = CursesMenu()
-
 for name in s.account_names:
 	function_item = FunctionItem(name, calculate_password, [s.get_rules(name)])
 	menu.append_item(function_item)
-
 menu.show()
-
 c.clear()
-
-#d.dump()	#uncomment this to see debugging output
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
