@@ -98,6 +98,9 @@ class account_settings:
 	def get_rules(self, n):
 		return self.accounts[self.account_names.index(n)]
 
+	def get_account_names(self):
+		return self.account_names
+
 
 import time
 import hashlib
@@ -128,10 +131,6 @@ class hasher:
 			if time.strftime("%d%m") == "0101":
 				print(r["account"]+" password changed today.")
 			d.log("Yearly expiration.")
-
-		if r["manual appendage"] != "":
-			d.log("Adding manual appendage for account " + name + ".")
-			copy = copy + r["manual appendage"]
 
 		self.buffer = copy
 
@@ -239,37 +238,50 @@ class hasher:
 		return count
 
 
+from cursesmenu import *
+from cursesmenu.items import *
 import getpass
 
 os.system('clear')
 c = clipper()
 s = account_settings(".accounts.csv")
 
-while True:
-	name = raw_input()
-	if name in ["q","quit","exit"]:
-		break
-	h = hasher(getpass.getpass("")+name)
-	print '\033[F\033[F'
+gp = getpass.getpass("")
 
-	d.log("Account name is " + name + ".")
 
-	if name in s.account_names:
-		h.set_rules(s.get_rules(name))
-	else:
-		h.set_rules(s.default_rules)
-
+def calculate_password(r):
+	h = hasher(gp+r["account"])
+	h.set_rules(r)
 	h.apply_input_mask()
 	h.hash()
 	h.apply_output_mask()
+	c.clip(h.output())
 
-	if c.clipboard_function != "none":
-		c.clip(h.output())
-		thread.start_new_thread(c.delayed_clear, (5,) )	#erased after 5 seconds (change this for different delay amounts)
-	else:
-		print h.output()
+menu = CursesMenu()
 
-if c.clipboard_function != "none":
-	c.clear()
+for name in s.account_names:
+	function_item = FunctionItem(name, calculate_password, [s.get_rules(name)])
+	menu.append_item(function_item)
+
+menu.show()
+
+c.clear()
 
 #d.dump()	#uncomment this to see debugging output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
