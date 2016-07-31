@@ -4,7 +4,7 @@ This script is a simple, unusual password manager. You only need to remember one
 
 Update the `.accounts.csv` list with your own info, then:
 
-1. Run the Python script *password.py* in a terminal emulator. (If you'd like, you can change the name).
+1. Run the Python script `password.py` in a terminal emulator. (If you'd like, you can change the name).
 2. Enter your master password.
 3. Select an account.
 4. The account name is hashed with the master password, and if desired character limits are imposed and symbols added or subtracted to meet the account provider's requirements (as you specify in `.accounts.csv`).
@@ -12,7 +12,7 @@ Update the `.accounts.csv` list with your own info, then:
 
 ###Setting password rules for an account
 
-List the password limitations in the file "accounts.csv", in the format:
+List the password limitations in the file `.accounts.csv`, in the format:
 
 	name, character max, letter min, numeral min, capital min, symbol min, expiration, manual appendage
 	mysite,         100,           ,           5,          10,           ,     yearly,
