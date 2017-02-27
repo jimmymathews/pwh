@@ -4,8 +4,8 @@ import os
 import subprocess
 import thread
 import time
-class clipper:
 
+class clipper:
 	def __init__(self):
 		self.clipboard_function = "none"
 		DEVNULL = open(os.devnull, "w");
@@ -19,14 +19,38 @@ class clipper:
 			self.clipboard_function = "xclip"
 		except:
 			pass
+                from sys import platform
+                if platform == "linux" or platform == "linux2":
+                # linux
+                        self.my_platform = "linux"
+                elif platform == "darwin":
+                # OS X
+                        self.my_platform = "osx"
+                elif platform == "win32":
+                # Windows...
+                        self.my_platform = "win32"
+
+	def addToOSXClipBoard(self,text):
+		command = 'echo ' + text.strip() + '| pbcopy'
+		os.system(command)
+	
+	def addToOSXClipBoard2(self,data):
+		p = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+		p.stdin.write(data)
+		p.stdin.close()
+		retcode = p.wait()
 
 	def clip(self,str):
-		if self.clipboard_function == "clipit":
-			subprocess.check_call(["clip_scripts/custom_clipit", str])
+		if self.my_platform == "osx":
+			self.addToOSXClipBoard2(str);
 			return
-		if self.clipboard_function == "xclip":
-			subprocess.call(["clip_scripts/custom_xclip", str])
-			return
+		if self.my_platform == "linux":
+			if self.clipboard_function == "clipit":
+				subprocess.check_call(["clip_scripts/custom_clipit", str])
+				return
+			if self.clipboard_function == "xclip":
+				subprocess.call(["clip_scripts/custom_xclip", str])
+				return
 
 	def clear(self):
 		self.clip("cleared")
