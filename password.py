@@ -4,9 +4,24 @@ import os
 import subprocess
 import thread
 import time
+from sys import platform
 
 class clipper:
 	def __init__(self):
+		ascertain_platform()
+		ascertain_clipboard_functionality()
+
+	def ascertain_platform():
+		if platform == "linux" or platform == "linux2":
+			self.platform = "linux"
+		elif platform == "darwin":
+			self.platform = "osx"
+		elif platform == "win32":
+			self.platform = "win32"
+			print("Windows not supported yet.")
+			exit()
+
+	def ascertain_clipboard_functionality():
 		self.clipboard_function = "none"
 		DEVNULL = open(os.devnull, "w");
 		try:
@@ -19,37 +34,21 @@ class clipper:
 			self.clipboard_function = "xclip"
 		except:
 			pass
-                from sys import platform
-                if platform == "linux" or platform == "linux2":
-                # linux
-                        self.my_platform = "linux"
-                elif platform == "darwin":
-                # OS X
-                        self.my_platform = "osx"
-                elif platform == "win32":
-                # Windows...
-                        self.my_platform = "win32"
 
-	def addToOSXClipBoard(self,text):
-		command = 'echo ' + text.strip() + '| pbcopy'
-		os.system(command)
-	
-	def addToOSXClipBoard2(self,data):
-		p = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
-		p.stdin.write(data)
-		p.stdin.close()
-		retcode = p.wait()
-
-	def clip(self,str):
-		if self.my_platform == "osx":
-			self.addToOSXClipBoard2(str);
+	def clip(self,string):
+		if self.platform == "osx":
+			p = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+			p.stdin.write(string)
+			p.stdin.close()
+			retcode = p.wait()
 			return
-		if self.my_platform == "linux":
+
+		if self.platform == "linux":
 			if self.clipboard_function == "clipit":
-				subprocess.check_call(["clip_scripts/custom_clipit", str])
+				subprocess.check_call(["clip_scripts/custom_clipit", string])
 				return
 			if self.clipboard_function == "xclip":
-				subprocess.call(["clip_scripts/custom_xclip", str])
+				subprocess.call(["clip_scripts/custom_xclip", string])
 				return
 
 	def clear(self):
