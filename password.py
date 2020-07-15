@@ -3,6 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
+from tkinter import StringVar
 import csv
 import pyperclip
 
@@ -23,21 +24,29 @@ class PasswordCalculator:
 class AccountTable:
     def __init__(self, parent, mp):
         self.mp = mp
-        self.tree = ttk.Treeview(parent)
-        self.tree['height'] = 15
+        # self.tree = ttk.Treeview(parent)
+        # self.tree['height'] = 15
         self.account_lister = AccountLister()
-        for i,name in enumerate(self.account_lister.account_names):
-            self.tree.insert('', i, name, text=name, values=[name])
+        # for i,name in enumerate(self.account_lister.account_names):
+        #     self.tree.insert('', i, name, text=name, values=[name])
+        self.account = StringVar()
+        self.combobox = ttk.Combobox(parent, textvariable=self.account, values=self.account_lister.account_names, state="readonly", width=50)
+        # self.combobox['state']
 
-        self.tree['selectmode'] = ["browse"]
-        self.tree.bind("<ButtonRelease-1>", self.click_table_entry)
+        # self.tree['selectmode'] = ["browse"]
+        # self.tree.bind("<ButtonRelease-1>", self.click_table_entry)
+        self.combobox.bind("<<ComboboxSelected>>", self.click_entry)
+
         self.hasher = Hasher()
 
-    def click_table_entry(self, event):
-        if len(self.tree.selection()) == 0:
-            return
-        input_id = self.tree.selection()[0]
-        name = input_id
+    # def click_table_entry(self, event):
+    def click_entry(self, event):
+        # if len(self.tree.selection()) == 0:
+        #     return
+        # input_id = self.tree.selection()[0]
+        # name = input_id
+        name = self.account.get()
+
         rules = self.account_lister.get_rules(name)
         self.hasher.update_buffer(self.mp+rules["account"])
         self.hasher.set_rules(rules)
@@ -47,7 +56,8 @@ class AccountTable:
         pyperclip.copy(self.hasher.output())
 
     def pack(self):
-        self.tree.pack()
+        # self.tree.pack()
+        self.combobox.pack()
         # self.tree.grid(column=0, row=0) #, sticky=("n","s","e","w")
 
 
